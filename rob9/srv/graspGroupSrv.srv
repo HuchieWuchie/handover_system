@@ -1,0 +1,8 @@
+std_msgs/Bool demo
+rob9/GraspMsg[] grasps
+std_msgs/Int32MultiArray objects
+std_msgs/Int32MultiArray masks
+sensor_msgs/PointCloud2 cloud
+std_msgs/Float32MultiArray cloud_uv
+---
+rob9/GraspMsg[] grasps

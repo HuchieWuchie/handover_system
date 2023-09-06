@@ -1,0 +1,3 @@
+std_msgs/Bool com
+---
+sensor_msgs/Image img

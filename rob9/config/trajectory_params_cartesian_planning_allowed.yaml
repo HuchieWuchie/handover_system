@@ -1,0 +1,8 @@
+acc_scaling: 0.1
+vel_scaling: 0.1
+planning_time: 0.1
+planning_attempts: 25
+replanning_attempts: 20
+abort_attempts: 5
+allow_Cartesian_planning: True
+allow_replanning: True

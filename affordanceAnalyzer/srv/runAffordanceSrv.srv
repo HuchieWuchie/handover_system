@@ -1,0 +1,4 @@
+sensor_msgs/Image img
+std_msgs/Float32 confidence_threshold
+---
+std_msgs/Bool success

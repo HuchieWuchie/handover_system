@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+  <rosparam file="$(find rob9)/config/trajectory_params.yaml"/>
+  
+  <node name="grasp_aff_association_module" pkg="grasp_aff_association" type="main.py" required="true"/>
+  <!--<node name="realsense_service_server" pkg="realsense_service" type="server.py" output="screen" required="true"/>-->
+  <node name="tf2_service" pkg="rob9" type="tf2_service.py" required="true"/>
+  <node name="moveit_service" pkg="rob9" type="moveit_service.py" required="true"/>
+  <node name="trajectory_service" pkg="moveit_scripts" type="trajectory_server_ik.py" required="true"/>
+  <node name="frame_publisher" pkg="moveit_scripts" type="frame_publisher.py" required="true"/>
+
+
+  <!-- <node name="affordancenet" pkg="rob9" type="affordancenet.sh" required="false"/> -->
+  <!-- <node name="graspnet" pkg="rob9" type="graspnet.sh" required="false"/> -->
+  <!-- <node name="speech_recognition_module" pkg="speech" type="recognition.py" required="false"/> -->
+
+
+
+</launch>

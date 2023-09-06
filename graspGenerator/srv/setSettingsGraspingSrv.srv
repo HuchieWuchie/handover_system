@@ -1,0 +1,11 @@
+std_msgs/Float32 azimuth_step_size
+std_msgs/Float32 azimuth_min
+std_msgs/Float32 azimuth_max
+std_msgs/Float32 polar_step_size
+std_msgs/Float32 polar_min
+std_msgs/Float32 polar_max
+std_msgs/Float32 depth_step_size
+std_msgs/Float32 depth_min
+std_msgs/Float32 depth_max
+---
+std_msgs/Bool success

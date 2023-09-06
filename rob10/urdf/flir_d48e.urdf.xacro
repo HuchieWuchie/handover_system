@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<robot name="flir_ptu" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <link name="ptu_base">
+    <inertial>
+      <mass value="1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667"/>
+    </inertial>
+    <collision name="ptu__collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://rob10/urdf/meshes/ptu_base.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ptu__visual">
+      <material name="color">
+       <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://rob10/urdf/meshes/ptu_base.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="ptu_panner" type="revolute">
+    <parent link="ptu_base"/>
+    <child link="ptu_pan"/>
+    <axis xyz="0 -1 0"/>
+    <!-- Rotates 2.9322 in both directions -->
+    <limit effort="1000.0" lower="-2.9322" upper="2.9322" velocity="0.5"/>
+    <origin xyz="0.055 0.09 0.055" rpy="0 4.7124 0"/>
+  </joint>
+
+  <link name="ptu_pan">
+    <inertial>
+      <mass value="1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667"/>
+    </inertial>
+    <collision name="ptu__collision">
+      <origin rpy="0 0 0" xyz="-0.03 0 -0.0654"/>
+      <geometry>
+        <mesh filename="package://rob10/urdf/meshes/ptu_pan.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ptu__visual">
+      <material name="color">
+       <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+      <origin rpy="0 0 0" xyz="-0.03 0 -0.0654"/>
+      <geometry>
+        <mesh filename="package://rob10/urdf/meshes/ptu_pan.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="ptu_tilter" type="revolute">
+    <parent link="ptu_pan"/>
+    <child link="ptu_tilt"/>
+    <axis xyz="-1 0 0"/>
+    <!-- Rotates 1.5708 downwards and 0.5236 upwards -->
+    <limit effort="1000.0" lower="-1.5708" upper="0.5236" velocity="0.5"/>
+    <origin xyz="0 0.13 -0.11" rpy="0 4.7124 0"/>
+  </joint>
+
+  <link name="ptu_tilt">
+    <inertial>
+      <mass value="1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667"/>
+    </inertial>
+    <collision name="ptu__collision">
+      <origin rpy="0 0 0" xyz="-0.0025 -0.026 -0.026"/>
+      <geometry>
+        <mesh filename="package://rob10/urdf/meshes/ptu_tilt.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ptu__visual">
+      <material name="color">
+       <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+      <origin rpy="0 0 0" xyz="-0.0025 -0.026 -0.026"/>
+      <geometry>
+        <mesh filename="package://rob10/urdf/meshes/ptu_tilt.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+
+
+  <link name="camera_ptu_link"/>
+
+
+
+  <joint name="camera_ptu_joint" type="fixed">
+    <parent link="ptu_tilt"/>
+    <child link="camera_ptu_link"/>
+    <origin xyz="0.11 0.05 0.02" rpy="-${pi/2} -${pi/2} 0"/>
+  </joint>
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="ptu_panner">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="ptu_tilter">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+</robot>

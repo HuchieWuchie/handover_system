@@ -1,0 +1,6 @@
+std_msgs/Bool command
+---
+std_msgs/Float32MultiArray confidence
+std_msgs/Int32MultiArray masks
+std_msgs/Int32MultiArray bbox
+std_msgs/Int32MultiArray object

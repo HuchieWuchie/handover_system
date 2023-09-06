@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot name="torso">
+
+  <link
+    name="torso">
+    <inertial>
+      <origin
+        xyz="0.085549 0.045 0.22824"
+        rpy="0 0 0" />
+      <mass
+        value="7.371" />
+      <inertia
+        ixx="0.142333363186813"
+        ixy="-1.90598132246786E-17"
+        ixz="-0.00793087912087912"
+        iyy="0.110591962912088"
+        iyz="-3.98955562535415E-18"
+        izz="0.0712527997252747" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rob9/urdf/meshes/torso_simple.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rob9/urdf/meshes/torso_simple.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="left_link"/>
+
+   <joint name="left_platform" type="fixed">
+     <parent link="torso"/>
+     <child link="left_link"/>
+     <origin xyz="0.138 0.218 0.1625" rpy="-${pi/4} 0 0"/>
+   </joint>
+
+   <link name="right_link"/>
+
+    <joint name="right_platform" type="fixed">
+      <parent link="torso"/>
+      <child link="right_link"/>
+      <origin xyz="0.136 0.213 -0.2575" rpy="${pi+pi/4} 0 0"/>
+    </joint>
+
+    <link name="camera"/>
+
+
+
+    <joint name="camera_platform" type="fixed">
+      <parent link="torso"/>
+      <child link="camera"/>
+      <origin xyz="-0.005 0.57 -0.045" rpy="${pi/2} 0 -${2.18166}"/>
+    </joint>
+
+</robot>

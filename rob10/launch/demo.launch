@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find iiwa_moveit_default)/launch/demo.launch"/>
+  <rosparam file="$(find rob10)/config/ptu_start_pose_demo.yaml"/>
+  <node name="robotiq_robot_controller" pkg="robotiq_3f_gripper_control" type="Robotiq3FGripperTcpNode.py" args="192.168.1.140"/>
+  <node name="gripper_controller" pkg="moveit_scripts" type="gripper_controller.py"/>
+  <node name="start_ptu" pkg="ptu" type="start_ptu_iiwa_demo.py" required="true"/>
+
+  <rosparam file="$(find rob9)/config/trajectory_params.yaml"/>
+
+  <node name="tf2_service" pkg="rob9" type="tf2_service.py" required="true"/>
+  <node name="moveit_service" pkg="rob9" type="moveit_service.py" required="true"/>
+
+  <node name="trajectory_service" pkg="moveit_scripts" type="trajectory_server_ik_iiwa.py" required="true"/>
+  <node name="frame_publisher" pkg="moveit_scripts" type="frame_publisher.py"/>
+
+  <node name="grasp_aff_association_module" pkg="grasp_aff_association" type="main.py" required="true"/>
+
+
+
+</launch>

@@ -1,0 +1,4 @@
+nav_msgs/Path poses
+std_msgs/String new_frame
+---
+nav_msgs/Path poses

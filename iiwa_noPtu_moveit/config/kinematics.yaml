@@ -1,0 +1,9 @@
+manipulator:
+  #kinematics_solver: bio_ik/BioIKKinematicsPlugin
+  #kinematics_solver_search_resolution: 0.005
+  #kinematics_solver_timeout: 0.005
+  #minimal_displacement_weight: 1
+  #avoid_joint_limits_weight: 1
+
+  kinematics_solver: trac_ik_kinematics_plugin/TRAC_IKKinematicsPlugin
+  kinematics_solver_timeout: 0.005

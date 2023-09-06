@@ -1,0 +1,8 @@
+sensor_msgs/PointCloud2 grasp_points
+sensor_msgs/PointCloud2 pcd_env
+std_msgs/String frame_id
+std_msgs/Int32 tool_id
+std_msgs/Int32 affordance_id
+std_msgs/Int32 object_instance
+---
+rob9/GraspMsg[] grasps

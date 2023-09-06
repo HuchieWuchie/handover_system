@@ -1,0 +1,4 @@
+std_msgs/Bool com
+---
+sensor_msgs/PointCloud2 pc
+std_msgs/Float32MultiArray color

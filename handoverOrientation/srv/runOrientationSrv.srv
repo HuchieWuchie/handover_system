@@ -1,0 +1,5 @@
+sensor_msgs/PointCloud2 pcd_geometry
+std_msgs/Float32MultiArray pcd_color
+---
+std_msgs/Float32MultiArray current
+std_msgs/Float32MultiArray goal

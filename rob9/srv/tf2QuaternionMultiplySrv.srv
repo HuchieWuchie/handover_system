@@ -1,0 +1,4 @@
+geometry_msgs/Quaternion q1
+geometry_msgs/Quaternion q2
+---
+geometry_msgs/Quaternion q

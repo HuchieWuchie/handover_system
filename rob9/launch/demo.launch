@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find our_moveit_config)/launch/demo.launch"/>
+
+  <rosparam file="$(find rob9)/config/trajectory_params.yaml"/>
+
+  <node name="robotiq_robot_controller" pkg="robotiq_3f_gripper_control" type="Robotiq3FGripperTcpNode.py" args="192.168.1.140"/>
+  <node name="gripper_controller" pkg="moveit_scripts" type="gripper_controller.py"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="ptu_real_frame_broadcaster" args="-0.034 -0.199 1.845 0.972 0.0 0.0 -0.233 world ptu_camera_color_optical_frame_real" />
+
+
+  <!-- <node name="start_ptu" pkg="ptu" type="start_ptu.py" required="true"/> -->
+  <!-- <node name="realsense_service" pkg="realsense_service" type="server.py" required="false"/> -->
+
+  <!-- <node name="move_to_goal" pkg="moveit_scripts" type="move_to_goal.py" output="screen"/>-->
+  <node name="frame_publisher" pkg="moveit_scripts" type="frame_publisher.py"/>
+  <node name="remap_pointcloud" pkg="rob9" type="remap_pointcloud.py"/>
+
+  <!-- <node name="affordancenet" pkg="rob9" type="affordancenet.sh" required="false"/>
+  <node name="graspnet" pkg="rob9" type="graspnet.sh" required="false"/> -->
+
+
+</launch>

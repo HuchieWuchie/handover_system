@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<robot name="ur_dummy" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- colors -->
+  <material name="aluminum">
+    <color rgba="0.5 0.5 0.5 0.5"/>
+  </material>
+
+  <material name="white">
+     <color rgba="1 1 1 1"/>
+  </material>
+
+  <material name="blue">
+     <color rgba="0 0 1 1"/>
+  </material>
+
+  <link name="world" />
+
+  <!-- WORK TABLE -->
+  <link name="table">
+    <visual>
+      <geometry>
+        <box size="0.8 0.8 1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <material name="aluminum"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.8 0.8 1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </collision>
+  </link>
+
+  <joint name="table_world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="table"/>
+    <origin xyz="0 0 0.5" rpy="0 0 0"/>
+  </joint>
+
+  <!-- SCANNER  -->
+  <link name="laser">
+    <visual>
+      <geometry>
+        <box size="0.06 0.06 0.06"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <material name="aluminum"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.06 0.06 0.06"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </collision>
+  </link>
+
+  <joint name="table_scanner_joint" type="fixed">
+    <parent link="table"/>
+    <child link="laser"/>
+    <origin xyz="0.43 -0.02 0.475" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ROBOT PLATE -->
+  <link name="robotPlate">
+    <visual>
+      <geometry>
+        <box size="0.2 0.4 0.039"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <material name="aluminum"/>
+    </visual>
+  </link>
+
+  <joint name="robotPlate_table_joint" type="fixed">
+    <parent link="table"/>
+    <child link="robotPlate"/>
+    <origin xyz="-0.3 -0.2 0.5195" rpy="0 0 0"/>
+  </joint>
+
+  <!-- IIWA -->
+  <link name="robotPlateCorner">
+    <visual>
+      <geometry>
+        <box size="0 0 0"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </visual>
+  </link>
+
+  <joint name="table_robotPlateCorner_joint" type="fixed">
+    <parent link="table"/>
+    <child link="robotPlateCorner"/>
+    <origin xyz="-0.4 0 0.538" rpy="0 0 0"/>
+  </joint>
+
+  <xacro:include filename="$(find rob10)/urdf/iiwa7.urdf.xacro"/>
+
+  <!-- GRIPPER + CAMERA-->
+  <xacro:include filename="$(find rob10)/urdf/robotiq-3f-gripper_articulated.urdf.xacro"/>
+
+  <joint name="iiwa_gripper_joint" type="fixed">
+    <parent link="iiwa_link_ee"/>
+    <child link="s_connector_plate"/>
+    <origin xyz="0 0 0" rpy="0 -1.57079 1.57079"/>
+  </joint>
+
+  <xacro:include filename="$(find rob10)/urdf/_d435.urdf.xacro"/>
+  <xacro:sensor_d435 parent="camera_wrist_link" prefix="ptu_">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:sensor_d435>
+
+  <link name="connector_box_camera">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </collision>
+  </link>
+
+  <joint name="connector_box_camera_joint" type="fixed">
+    <parent link="ptu_camera_right_ir_frame"/>
+    <child link="connector_box_camera"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+
+</robot>

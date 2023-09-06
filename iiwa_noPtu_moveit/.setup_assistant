@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: rob10
+    relative_path: urdf/iiwa_noPtu_setup_v2.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/ur_dummy.srdf
+  CONFIG:
+    author_name: A
+    author_email: B@C.dk
+    generated_timestamp: 1652965539

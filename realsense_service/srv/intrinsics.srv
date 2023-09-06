@@ -1,0 +1,4 @@
+std_msgs/Int64 a
+std_msgs/Int64 b
+---
+std_msgs/Int64 sum
