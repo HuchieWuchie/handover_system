@@ -5,6 +5,12 @@ Contains the code and implementaiton for our paper Optimizing Robot-to-Human Obj
 
 This repository contains our ROS node implementation of "Optimizing Robot-to-Human Object Handovers using Vision-based Affordance Information". The system is capable of performing task-oriented handovers, where an object is grasped by its functional affordance and handover with an appropriate orientaiton. Object affordances are detected using our deep neural network AffNet-DR, which was trained solely on synthetic data.
 
+## Handover orientation analysis
+Scripts and code for deriving the mean handover orientation can be found in the folder named "handover_orientation_analysis" refer to the Readme file in there for more information.
+
+## Affiliated links
+For more information on how to train the object affordance segmentation deep neural network please see: https://github.com/HuchieWuchie/affnetDR
+
 ## Requirements:
 
 General system requirements
