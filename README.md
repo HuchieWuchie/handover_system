@@ -114,5 +114,7 @@ Note if you want to run the orientation_test_METHOD.py scripts you have to make 
 
 ## Authors
 Daniel Lehotsky
+
 Albert Christensen
+
 Dimitrios Chrysostomou
